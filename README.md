@@ -99,6 +99,19 @@ Note that we register the widget's type name, i.e. `apostrophe-video`, NOT the m
 
 For a complete example, see `video.js` in this module.
 
+## How do I push my assets to the browser? "always" doesn't work!
+
+For backwards compatibility, this module patches "always" to load only when a user is logged in.
+
+Instead, use `when: lean` when pushing an asset in your module:
+
+```javascript
+module.exports = {
+  construct: function(self, options) {
+    self.pushAsset('script', 'my-widget-player', { when: 'lean' });
+  }
+}
+```
 
 ## What's it weigh on the front end?
 
