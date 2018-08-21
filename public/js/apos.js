@@ -14,6 +14,7 @@
     window.apos = {};
   }
   var apos = window.apos;
+  apos.lean = {};
 
   // Make a POST JSON call to the given URI. The object `data` is transferred
   // as JSON. On success the response is delivered to the callback as
@@ -21,12 +22,12 @@
   // On failure the error is delivered as `(err)`. Specifically the
   // error will be the event object associated with the error.
 
-  apos.post = function(uri, data, callback) {
+  apos.lean.post = function(uri, data, callback) {
     if (apos.prefix) {
       uri = apos.prefix + uri;
     }
     var xmlhttp = new XMLHttpRequest();
-    var csrfToken = apos.getCookie('csrfCookieName');
+    var csrfToken = apos.lean.getCookie('csrfCookieName');
     xmlhttp.open("POST", uri);
     xmlhttp.setRequestHeader('Content-Type', 'application/json');
     if (csrfToken) {
@@ -36,13 +37,13 @@
     monitor(xmlhttp, callback);
   };
 
-  // Like `apos.post` but uses a GET request, with the properties of `data`
+  // Like `apos.lean.post` but uses a GET request, with the properties of `data`
   // added with query string encoding. Currently no support for nested properties
   // in `data`; intended for simple cases where you actually want the browser
   // to cache. Like `jsonCall`, it invokes the callback Node.js style,
   // with an error if any, followed by the response as parsed JSON.
 
-  apos.get = function(uri, data, callback) {
+  apos.lean.get = function(uri, data, callback) {
     if (apos.prefix) {
       uri = apos.prefix + uri;
     }
@@ -63,12 +64,12 @@
   };
 
   // Fetch the cookie by the given name
-  apos.getCookie = function(name) {
+  apos.lean.getCookie = function(name) {
     var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
     return match && match[2];
   };
 
-  // Implementation detail of `apos.post` and `apos.get`
+  // Implementation detail of `apos.lean.post` and `apos.lean.get`
   function monitor(xmlhttp, callback) {
     xmlhttp.addEventListener("load", function() {
       var data;
@@ -90,7 +91,7 @@
   // Remove a CSS class, if present.
   // http://youmightnotneedjquery.com/
 
-  apos.removeClass = function(el, className) {
+  apos.lean.removeClass = function(el, className) {
     if (el.classList) {
       el.classList.remove(className);
     } else {
@@ -101,7 +102,7 @@
   // Add a CSS class, if missing.
   // http://youmightnotneedjquery.com/
 
-  apos.addClass = function(el, className) {
+  apos.lean.addClass = function(el, className) {
     if (el.classList) {
       el.classList.add(className);
     } else {
@@ -112,7 +113,7 @@
   // Like Object.assign. Uses Object.assign where available.
   // (Takes us back to IE9)
 
-  apos.assign = function(obj1, obj2 /*,  obj3... */) {
+  apos.lean.assign = function(obj1, obj2 /*,  obj3... */) {
     if (Object.assign) {
       return Object.assign.apply(Object, arguments);
     }
@@ -128,7 +129,7 @@
   };
 
   // Map of widget players. Adding one is as simple as:
-  // window.apos.widgetPlayers['widget-name'] = function(el, data, options) {}
+  // window.apos.lean.widgetPlayers['widget-name'] = function(el, data, options) {}
   //
   // Use the widget's name, like "apostrophe-images", NOT the name of its module.
   //
@@ -141,12 +142,12 @@
   // THAT ONE WIDGET and NO OTHER. Don't worry about finding the
   // others, we will do that for you and we guarantee only one call per widget.
 
-  apos.widgetPlayers = {};
+  apos.lean.widgetPlayers = {};
 
   // On DOMready, similar to jQuery. Always defers at least to next tick.
   // http://youmightnotneedjquery.com/
 
-  apos.onReady = function(fn) {
+  apos.lean.onReady = function(fn) {
     if (document.readyState !== 'loading') {
       setTimeout(fn, 0);
     } else if (document.addEventListener) {
@@ -169,7 +170,7 @@
   //
   // To register a widget player for the `apostrophe-images` widget, write:
   //
-  // `apos.widgetPlayers['apostrophe-images'] = function(el, data, options) { ... }`
+  // `apos.lean.widgetPlayers['apostrophe-images'] = function(el, data, options) { ... }`
   //
   // `el` is a DOM element, not a jQuery object. Otherwise identical to
   // traditional Apostrophe widget players. `data` contains the properties
@@ -180,7 +181,7 @@
   // DON'T try to find all the widgets. DO just enhance `el`.
   // This is a computer science principle known as "separation of concerns."
 
-  apos.runPlayers = function(el) {
+  apos.lean.runPlayers = function(el) {
     var widgets = (el || document).querySelectorAll('[data-apos-widget]');
     var i;
     if (el && el.getAttribute('data-apos-widget')) {
@@ -198,7 +199,7 @@
       var data = JSON.parse(widget.getAttribute('data'));
       var options = JSON.parse(widget.getAttribute('data-options'));
       widget.setAttribute('data-apos-played', '1');
-      var player = apos.widgetPlayers[data.type];
+      var player = apos.lean.widgetPlayers[data.type];
       if (!player) {
         return;
       }    
@@ -207,18 +208,18 @@
   };
 
   // Schedule runPlayers to run as soon as the document is ready.
-  // You can run it again with apos.runPlayers() if you AJAX-load some widgets.
+  // You can run it again with apos.lean.runPlayers() if you AJAX-load some widgets.
 
-  apos.onReady(function() {
-    // Indirection so you can override `apos.runPlayers` first if you want to for some reason
-    apos.runPlayers();
+  apos.lean.onReady(function() {
+    // Indirection so you can override `apos.lean.runPlayers` first if you want to for some reason
+    apos.lean.runPlayers();
     // In the event (cough) that we're in the full-blown Apostrophe editing world,
     // we also need to run widget players when content is edited
   });
 
   if (apos.on) {
     apos.on('enhance', function($el) {
-      apos.runPlayers($el[0]);
+      apos.lean.runPlayers($el[0]);
     });
   }
 

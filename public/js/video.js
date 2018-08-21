@@ -1,15 +1,15 @@
-apos.widgetPlayers['apostrophe-video'] = function(el, data, options) {
+apos.lean.widgetPlayers['apostrophe-video'] = function(el, data, options) {
 
   queryAndPlay(
     el.querySelector('[data-apos-video-player]'),
-    apos.assign(data.video, {
+    apos.lean.assign(data.video, {
       neverOpenGraph: 1
     })
   );
 
   function queryAndPlay(el, options) {
-    apos.removeClass(el, 'apos-oembed-invalid');
-    apos.addClass(el, 'apos-oembed-busy');
+    apos.lean.removeClass(el, 'apos-oembed-invalid');
+    apos.lean.addClass(el, 'apos-oembed-busy');
     if (!options.url) {
       return fail('undefined');
     }
@@ -17,13 +17,13 @@ apos.widgetPlayers['apostrophe-video'] = function(el, data, options) {
       if (err || (options.type && (result.type !== options.type))) {
         return fail(err || 'inappropriate');
       }
-      apos.removeClass(el, 'apos-oembed-busy');
+      apos.lean.removeClass(el, 'apos-oembed-busy');
       return play(el, result);
     });
   }
 
   function query(options, callback) {
-    return apos.get('/modules/apostrophe-oembed/query', options, callback);
+    return apos.lean.get('/modules/apostrophe-oembed/query', options, callback);
   }
 
   function play(el, result) {
@@ -38,7 +38,7 @@ apos.widgetPlayers['apostrophe-video'] = function(el, data, options) {
     inner.removeAttribute('height');
     el.append(inner);
     // wait for CSS width to be known
-    apos.onReady(function() {
+    apos.lean.onReady(function() {
       // If oembed results include width and height we can get the
       // video aspect ratio right
       if (result.width && result.height) {
@@ -50,8 +50,8 @@ apos.widgetPlayers['apostrophe-video'] = function(el, data, options) {
   }
 
   function fail(err) {
-    apos.removeClass(el, 'apos-oembed-busy');
-    apos.addClass(el, 'apos-oembed-invalid');
+    apos.lean.removeClass(el, 'apos-oembed-busy');
+    apos.lean.addClass(el, 'apos-oembed-invalid');
     if (err !== 'undefined') {
       el.innerHTML = 'Ⓧ';
     } else {
