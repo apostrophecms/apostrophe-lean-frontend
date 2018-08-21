@@ -22,9 +22,16 @@
   // error will be the event object associated with the error.
 
   apos.post = function(uri, data, callback) {
-    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+    if (apos.prefix) {
+      uri = apos.prefix + uri;
+    }
+    var xmlhttp = new XMLHttpRequest();
+    var csrfToken = apos.getCookie('csrfCookieName');
     xmlhttp.open("POST", uri);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
+    xmlhttp.setRequestHeader('Content-Type', 'application/json');
+    if (csrfToken) {
+      xmlhttp.setRequestHeader('X-XSRF-TOKEN', csrfToken);
+    }
     xmlhttp.send(JSON.stringify(data));
     monitor(xmlhttp, callback);
   };
@@ -36,6 +43,9 @@
   // with an error if any, followed by the response as parsed JSON.
 
   apos.get = function(uri, data, callback) {
+    if (apos.prefix) {
+      uri = apos.prefix + uri;
+    }
     uri += '?';
     var keys = Object.keys(data);
     var i;
@@ -45,11 +55,17 @@
       }
       uri += encodeURIComponent(keys[i]) + '=' + encodeURIComponent(data[keys[i]]);
     }
-    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+    var xmlhttp = new XMLHttpRequest(); 
     xmlhttp.open("GET", uri);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(data));
     monitor(xmlhttp, callback);
+  };
+
+  // Fetch the cookie by the given name
+  apos.getCookie = function(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match && match[2];
   };
 
   // Implementation detail of `apos.post` and `apos.get`

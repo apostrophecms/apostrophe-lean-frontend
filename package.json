@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/apostrophecms/apostrophe-lean-frontend/issues"
   },
-  "homepage": "https://github.com/apostrophecms/apostrophe-lean-frontend#readme"
+  "homepage": "https://github.com/apostrophecms/apostrophe-lean-frontend#readme",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
 }
