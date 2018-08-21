@@ -1,0 +1,29 @@
+{
+  "name": "apostrophe-lean-frontend",
+  "version": "2.0.0",
+  "description": "A leaner frontend js world for ApostropheCMS 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apostrophecms/apostrophe-lean-frontend.git"
+  },
+  "keywords": [
+    "apostrophecms",
+    "apostrophe",
+    "cms",
+    "cms",
+    "content",
+    "management",
+    "system",
+    "apostrophe"
+  ],
+  "author": "P'unk Avenue LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apostrophecms/apostrophe-lean-frontend/issues"
+  },
+  "homepage": "https://github.com/apostrophecms/apostrophe-lean-frontend#readme"
+}
