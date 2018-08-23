@@ -1,14 +1,14 @@
-## Stability
-
-Alpha. We're using this, but still tweaking it.
-
 ## What does it do?
 
-A leaner frontend js world for ApostropheCMS 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players, tiny workarounds for some of the silliest gaps in older browsers, and some players for standard widgets that are pushed to the browser only if you enable them.
+A leaner frontend js world for [ApostropheCMS](https://apostrophecms.org) 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players, tiny workarounds for some of the silliest gaps in older browsers, and some players for standard widgets that are pushed to the browser only if you enable them.
 
 This module is designed to be feasible for use back to the IE9 compatibility level.
 
 ## Usage
+
+```
+npm install apostrophe-lean-frontend
+```
 
 ```javascript
 // inside app.js
@@ -115,8 +115,16 @@ module.exports = {
 
 ## What's it weigh on the front end?
 
-Total size is currently less than 10K BEFORE minification, which of course makes it even smaller. And that's with the widget players, which you don't have to enable if you don't want to.
+Total size is currently less than 10K BEFORE minification, which of course makes it even smaller. And that's with the video widget player, which you don't have to enable if you don't want to.
 
 Take into account gzip encoding and... yes, it deserves its name. There may of course be some limited growth, but we are committed to keeping it lean and pushing various widget players only if you enable that.
 
+### Tips
 
+**"What about `_.each()`?"** Arrays have had a native `.forEach()` method since IE9. If you need to iterate over object properties, use `Object.keys(yourObjectHere)` to get an array of keys, then iterate over those with `.forEach()`.
+
+**"What about $('.some-class-here')?"** Use `document.querySelectorAll('.some-class-here')`. You can also call that method on an individual DOM element to get the effect of jQuery's `find()` method.
+
+### More resources for success
+
+Struggling to adapt existing jQuery-based code to "vanilla JavaScript?" Check out [You Might Not Need jQuery](http://youmightnotneedjquery.com/).
