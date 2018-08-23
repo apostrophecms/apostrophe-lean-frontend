@@ -48,16 +48,11 @@ When you are logged out, you get a tiny `window.apos` object with key properties
 
 ### `apos.lean.post(uri, data, callback)`
 
-Sends `data` to URI as a JSON-format request body (note: not URL-encoded). The callback is node-style: it receives `(err, response)`. If there is no error, `response` is pre-parsed JSON data.
-
+Sends `data` to URI as a JSON-format request body in a POST request (note: not URL-encoded). The callback is node-style: it receives `(err, response)`. If there is no error, `response` is pre-parsed JSON data. Respects `apos.prefix` and sends the CSRF token.
 
 ### `apos.lean.get(uri, data, callback)`
 
 Sends `data` to URI as a query string. Nested objects and arrays are not supported; see `apos.post`. This method should be reserved for simple, intentionally cache-friendly requests. The callback is node-style: it receives `(err, response)`. If there is no error, `response` is pre-parsed JSON data. Respects `apos.prefix`.
-
-### `apos.lean.post(uri, data, callback)`
-
-Sends `data` to URI as a JSON-format request body in a POST request (note: not URL-encoded). The callback is node-style: it receives `(err, response)`. If there is no error, `response` is pre-parsed JSON data. Respects `apos.prefix` and sends the CSRF token.
 
 ### `apos.lean.removeClass(el, className)`
 
