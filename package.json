@@ -1,6 +1,6 @@
 {
   "name": "apostrophe-lean-frontend",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A leaner frontend js world for ApostropheCMS 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players.",
   "main": "index.js",
   "scripts": {
