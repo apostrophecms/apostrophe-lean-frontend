@@ -19,6 +19,9 @@ module.exports = {
       if (self.options.widgets['apostrophe-video']) {
         self.pushAsset('script', 'video', { when: 'lean' });
       }
+      // Intentionally for the user scene, this "player" triggers
+      // the rich text editor on click
+      self.pushAsset('script', 'richText', { when: 'user' });
     };
   }
 };

@@ -110,6 +110,34 @@
     }
   };
 
+  // A wrapper for the native closest() method of DOM elements,
+  // where available, otherwise a polyfill for IE9+. Returns the
+  // closest ancestor of el that matches selector, where
+  // el itself is considered the closest possible ancestor.
+
+  apos.lean.closest = function(el, selector) {
+    if (el.closest) {
+      return el.closest(selector);
+    }
+    // Polyfill per https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
+    if (!Element.prototype.matches) {
+      Element.prototype.matches = Element.prototype.msMatchesSelector || 
+        Element.prototype.webkitMatchesSelector;
+    }
+    Element.prototype.closest = function(s) {
+      var el = this;
+      if (!document.documentElement.contains(el)) return null;
+      do {
+          if (el.matches(s)) {
+            return el;
+          }
+          el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1); 
+      return null;
+    };
+    return el.closest(selector);
+  }
+
   // Like Object.assign. Uses Object.assign where available.
   // (Takes us back to IE9)
 

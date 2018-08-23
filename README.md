@@ -62,6 +62,14 @@ Removes the specified class from the specified DOM element (NOT a jQuery object)
 
 Adds the specified class to the specified DOM element (NOT a jQuery object).
 
+### `apos.lean.closest(el, selector)`
+
+A wrapper for the native closest() method of DOM elements,
+where available, otherwise a polyfill for IE9+. Returns the
+closest ancestor of el that matches `selector`, where
+`el` itself is considered the closest possible ancestor and will
+be returned if it matches `selector`.
+
 ### `apos.lean.assign(obj1, obj2 /* , obj3... */)`
 
 A wrapper for `Object.assign`, where available; otherwise provides a basic polyfill. Properties of `obj2` are copied to `obj1`, then properties of `obj3`, and so on. `obj1` is returned.
