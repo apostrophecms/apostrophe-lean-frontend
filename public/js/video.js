@@ -36,7 +36,7 @@ apos.lean.widgetPlayers['apostrophe-video'] = function(el, data, options) {
     }
     inner.removeAttribute('width');
     inner.removeAttribute('height');
-    el.append(inner);
+    el.appendChild(inner);
     // wait for CSS width to be known
     apos.lean.onReady(function() {
       // If oembed results include width and height we can get the
