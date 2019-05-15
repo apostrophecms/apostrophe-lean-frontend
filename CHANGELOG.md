@@ -1,7 +1,11 @@
-## 2.0.2
+## 2.0.3
 
 Fixed a bug which prevented video widgets to render in IE11. Thanks to 
 Leonhard Melzer.
+
+## 2.0.2
+
+Fixed a bug in `apos.lean.assign`.
 
 ## 2.0.1
 
