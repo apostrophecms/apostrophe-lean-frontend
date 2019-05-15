@@ -1,8 +1,7 @@
 ## 2.0.2
 
-Fixed a bug which prevented video widgets to render in IE11.
-
-- Closed: https://github.com/apostrophecms/apostrophe-lean-frontend/issues/2
+Fixed a bug which prevented video widgets to render in IE11. Thanks to 
+Leonhard Melzer.
 
 ## 2.0.1
 
