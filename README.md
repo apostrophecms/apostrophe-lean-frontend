@@ -1,6 +1,6 @@
 ## What does it do?
 
-A leaner frontend js world for [ApostropheCMS](https://apostrophecms.org) 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players, tiny workarounds for some of the silliest gaps in older browsers, and some players for standard widgets that are pushed to the browser only if you enable them.
+A leaner frontend js and css world for [ApostropheCMS](https://apostrophecms.org) 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players, tiny workarounds for some of the silliest gaps in older browsers, and some players for standard widgets that are pushed to the browser only if you enable them.
 
 This module is designed to be feasible for use back to the IE9 compatibility level.
 
@@ -115,6 +115,28 @@ module.exports = {
   }
 }
 ```
+## Pushing preconfigured assets from apostrophe-assets
+
+This module pushes js and css assets specified in _apostrophe-assets/index.js_ as if `when: 'lean'` is set, that results all these assets being pushed for both logged in/off ussers, unless `when` is set to a different value as in 
+```
+module.exports = {
+  jQuery: 3,
+  stylesheets: [
+    {
+      name: 'site',
+      when: 'always'
+    }
+  ],
+  scripts: [
+    {
+      name: 'site',
+      when: 'always'
+    }
+  ]
+};
+```
+
+Since no other inbuilt apostrophe styles are being pushed, the default prepackaged _public/css/site.less_ in _apostrophe-assets_ LESS transpilation will break due to the `@apos` style dependencies.
 
 ## What's it weigh on the front end?
 
