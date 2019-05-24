@@ -117,26 +117,9 @@ module.exports = {
 ```
 ## Pushing preconfigured assets from apostrophe-assets
 
-This module pushes js and css assets specified in _apostrophe-assets/index.js_ as if `when: 'lean'` is set, that results all these assets being pushed for both logged in/off ussers, unless `when` is set to a different value as in 
-```
-module.exports = {
-  jQuery: 3,
-  stylesheets: [
-    {
-      name: 'site',
-      when: 'always'
-    }
-  ],
-  scripts: [
-    {
-      name: 'site',
-      when: 'always'
-    }
-  ]
-};
-```
+As of version 2.1.0, this just works. This module pushes js and css assets specified in `apostrophe-assets/index.js` as if `when: 'lean'` is set, so that these assets are available to everyone, unless `when` is explicitly set to a different value. Note that for legacy reasons, `when: 'always'` *does not* push assets to everyone in the presence of this module.
 
-Since no other inbuilt apostrophe styles are being pushed, the default prepackaged _public/css/site.less_ in _apostrophe-assets_ LESS transpilation will break due to the `@apos` style dependencies.
+> Important: if your `site.less` refers to LESS variables that come from Apostrophe, i.e. those with an `@apos` prefix, your LESS will not compile successfully since these will not be present.
 
 ## What's it weigh on the front end?
 

@@ -1,5 +1,5 @@
 // Adds minimal services to the apos object replacing
-// functionality widget players can't live without, 
+// functionality widget players can't live without,
 // and provides the `runPlayers` method to run all players
 // once if not run previously.
 //
@@ -7,6 +7,9 @@
 // the DOM is ready.
 //
 // Adds apos to window if not already present.
+//
+
+/* eslint-env browser */
 
 (function() {
 
@@ -56,7 +59,7 @@
       }
       uri += encodeURIComponent(keys[i]) + '=' + encodeURIComponent(data[keys[i]]);
     }
-    var xmlhttp = new XMLHttpRequest(); 
+    var xmlhttp = new XMLHttpRequest();
     xmlhttp.open("GET", uri);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify(data));
@@ -121,22 +124,22 @@
     }
     // Polyfill per https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
     if (!Element.prototype.matches) {
-      Element.prototype.matches = Element.prototype.msMatchesSelector || 
+      Element.prototype.matches = Element.prototype.msMatchesSelector ||
         Element.prototype.webkitMatchesSelector;
     }
     Element.prototype.closest = function(s) {
       var el = this;
       if (!document.documentElement.contains(el)) return null;
       do {
-          if (el.matches(s)) {
-            return el;
-          }
-          el = el.parentElement || el.parentNode;
-      } while (el !== null && el.nodeType === 1); 
+        if (el.matches(s)) {
+          return el;
+        }
+        el = el.parentElement || el.parentNode;
+      } while (el !== null && el.nodeType === 1);
       return null;
     };
     return el.closest(selector);
-  }
+  };
 
   // Like Object.assign. Uses Object.assign where available.
   // (Takes us back to IE9)
@@ -193,8 +196,8 @@
   // time. You may also invoke it if you just AJAXed in some content and
   // have reason to suspect there could be widgets in there. You may pass:
   //
-  // * Nothing at all — entire document is searched for new widgets to enhance, or
-  // * A DOM element that contains widgets — searched for new widgets to enhance.
+  // * Nothing at all - entire document is searched for new widgets to enhance, or
+  // * A DOM element - new widgets to enhance are found within this scope only.
   //
   // To register a widget player for the `apostrophe-images` widget, write:
   //
@@ -230,7 +233,7 @@
       var player = apos.lean.widgetPlayers[data.type];
       if (!player) {
         return;
-      }    
+      }
       player(widget, data, options);
     }
   };
@@ -252,6 +255,3 @@
   }
 
 })();
-
-
-

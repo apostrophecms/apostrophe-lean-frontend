@@ -1,10 +1,10 @@
 {
   "name": "apostrophe-lean-frontend",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "A leaner frontend js world for ApostropheCMS 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,14 @@
   "homepage": "https://github.com/apostrophecms/apostrophe-lean-frontend#readme",
   "dependencies": {
     "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0",
+    "eslint-config-apostrophe": "^2.0.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }

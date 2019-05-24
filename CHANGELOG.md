@@ -1,3 +1,7 @@
+## 2.1.0
+
+In the presence of this module, Apostrophe's stock stylesheets should not be pushed either. On the other hand, project-level stylesheets and JavaScript assets configured for the `apostrophe-assets` module *should* be pushed unless they have an explicit `when` setting. Thanks to regmeg.
+
 ## 2.0.3
 
 Fixed a bug which prevented video widgets to render in IE11. Thanks to 
