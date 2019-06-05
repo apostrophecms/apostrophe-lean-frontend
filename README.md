@@ -1,3 +1,19 @@
+## This package is deprecated for new projects
+
+Although this package **still works** for backwards compatibility, its functionality has been **merged into the core of Apostrophe** as of version 2.91.0. You should [follow the official lean frontend HOWTO]() rather than using this module.
+
+Future, as-yet-unreleased Apostrophe modules might not support operation with this legacy module present.
+
+This module was an important part of Apostrophe's evolution and we thank you for using it and giving your feedback.
+
+## How to migrate away from this module
+
+* Remove this module and do not enable it in `app.js`.
+* Turn on the `lean: true` option for the `apostrophe-assets` module.
+* Change all `apos.lean` method calls to `apos.utils`. The method names are the same.
+* Change all `apos.lean.widgetPlayers` assignments to `apos.utils.widgetPlayers`.
+* If you want the lean player for `apostrophe-video-widgets`, set `player: true` in the configuration of the `apostrophe-video-widgets` module. Note this is different from how it was done in `apostrophe-lean-frontend`.
+
 ## What does it do?
 
 A leaner frontend js and css world for [ApostropheCMS](https://apostrophecms.org) 2.x. No jQuery, no lodash, no async module, etc. You still get a way to write widget players, tiny workarounds for some of the silliest gaps in older browsers, and some players for standard widgets that are pushed to the browser only if you enable them.
