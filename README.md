@@ -1,6 +1,7 @@
 ## This package is deprecated for new projects
 
-Although this package **still works** for backwards compatibility, its functionality has been **merged into the core of Apostrophe** as of version 2.91.0. You should [follow the official lean frontend HOWTO]() rather than using this module.
+Although this package **still works** for backwards compatibility, its functionality has been **merged into the core of Apostrophe** as of version 2.91.0. You should [follow the official lean frontend HOWTO](https://docs.apostrophecms.org/apostrophe/tutorials/howtos/lean-frontend-assets) rather than using this module.
+
 
 Future, as-yet-unreleased Apostrophe modules might not support operation with this legacy module present.
 
